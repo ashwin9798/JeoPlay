@@ -1,0 +1,15 @@
+PODS:
+  - Alamofire (4.2.0)
+  - Kanna (2.0.0)
+
+DEPENDENCIES:
+  - Alamofire (~> 4.0)
+  - Kanna (~> 2.0.0)
+
+SPEC CHECKSUMS:
+  Alamofire: aa2e09d871c9160ac53c90e83c68064a94e3dfbe
+  Kanna: 9a6637f72f5c77fe9c045b1efb2a5bb074754af8
+
+PODFILE CHECKSUM: 05f763987f054b15e39bfba858acdfb03bcdd9f0
+
+COCOAPODS: 1.1.1

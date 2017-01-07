@@ -1,0 +1,6 @@
+framework module Pods_JeopardyParse_Play {
+  umbrella header "Pods-JeopardyParse&Play-umbrella.h"
+
+  export *
+  module * { export * }
+}
