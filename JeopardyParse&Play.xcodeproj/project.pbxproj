@@ -13,6 +13,10 @@
 		773A538C1E1F241400EA4A0A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 773A538B1E1F241400EA4A0A /* Assets.xcassets */; };
 		773A538F1E1F241400EA4A0A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 773A538D1E1F241400EA4A0A /* LaunchScreen.storyboard */; };
 		773A53971E1F4C8700EA4A0A /* gameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773A53961E1F4C8700EA4A0A /* gameVC.swift */; };
+		774B61C21E21BD0E00F2E403 /* CategoryTitleCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774B61C11E21BD0E00F2E403 /* CategoryTitleCellCollectionViewCell.swift */; };
+		774B61C41E21C30200F2E403 /* questionButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774B61C31E21C30200F2E403 /* questionButtonCell.swift */; };
+		774B61C61E21DA8F00F2E403 /* questionVCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774B61C51E21DA8F00F2E403 /* questionVCViewController.swift */; };
+		774B61D31E223C4E00F2E403 /* indexString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774B61D21E223C4E00F2E403 /* indexString.swift */; };
 		B01AE62EF82E214FFD8A22CE /* Pods_JeopardyParse_Play.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0523C36646C81486A7504B2A /* Pods_JeopardyParse_Play.framework */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +32,10 @@
 		773A538E1E1F241400EA4A0A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		773A53901E1F241400EA4A0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		773A53961E1F4C8700EA4A0A /* gameVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = gameVC.swift; sourceTree = "<group>"; };
+		774B61C11E21BD0E00F2E403 /* CategoryTitleCellCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryTitleCellCollectionViewCell.swift; sourceTree = "<group>"; };
+		774B61C31E21C30200F2E403 /* questionButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = questionButtonCell.swift; sourceTree = "<group>"; };
+		774B61C51E21DA8F00F2E403 /* questionVCViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = questionVCViewController.swift; sourceTree = "<group>"; };
+		774B61D21E223C4E00F2E403 /* indexString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = indexString.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +75,10 @@
 				773A53861E1F241400EA4A0A /* ViewController.swift */,
 				773A53961E1F4C8700EA4A0A /* gameVC.swift */,
 				773A53881E1F241400EA4A0A /* Main.storyboard */,
+				774B61C51E21DA8F00F2E403 /* questionVCViewController.swift */,
+				774B61C11E21BD0E00F2E403 /* CategoryTitleCellCollectionViewCell.swift */,
+				774B61C31E21C30200F2E403 /* questionButtonCell.swift */,
+				774B61D21E223C4E00F2E403 /* indexString.swift */,
 				773A538B1E1F241400EA4A0A /* Assets.xcassets */,
 				773A538D1E1F241400EA4A0A /* LaunchScreen.storyboard */,
 				773A53901E1F241400EA4A0A /* Info.plist */,
@@ -126,6 +138,7 @@
 				TargetAttributes = {
 					773A53801E1F241400EA4A0A = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 4QVR4U55S7;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -215,8 +228,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				773A53871E1F241400EA4A0A /* ViewController.swift in Sources */,
+				774B61D31E223C4E00F2E403 /* indexString.swift in Sources */,
 				773A53851E1F241400EA4A0A /* AppDelegate.swift in Sources */,
 				773A53971E1F4C8700EA4A0A /* gameVC.swift in Sources */,
+				774B61C41E21C30200F2E403 /* questionButtonCell.swift in Sources */,
+				774B61C21E21BD0E00F2E403 /* CategoryTitleCellCollectionViewCell.swift in Sources */,
+				774B61C61E21DA8F00F2E403 /* questionVCViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -338,8 +355,13 @@
 			baseConfigurationReference = 5843E66C15C24FA1A31E2F1C /* Pods-JeopardyParse&Play.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 4QVR4U55S7;
 				INFOPLIST_FILE = "JeopardyParse&Play/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.AshwinVivek.JeopardyParse-Play";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
@@ -351,8 +373,13 @@
 			baseConfigurationReference = 3B5E48D7F52E0FE2667AE6CD /* Pods-JeopardyParse&Play.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 4QVR4U55S7;
 				INFOPLIST_FILE = "JeopardyParse&Play/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.AshwinVivek.JeopardyParse-Play";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
