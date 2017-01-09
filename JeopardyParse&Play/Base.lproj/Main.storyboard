@@ -33,19 +33,53 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="play"/>
                                 <connections>
-                                    <segue destination="iaQ-oY-Je4" kind="show" id="hhy-yF-6Vb"/>
+                                    <segue destination="aYp-5j-eVH" kind="show" id="lgb-bj-Z9Z"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
-                    <connections>
-                        <outlet property="playButton" destination="Gds-FV-8xp" id="Dxj-X7-UCf"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="137.18140929535232" y="138.40000000000001"/>
+            <point key="canvasLocation" x="-113" y="137"/>
+        </scene>
+        <!--Scrape GameVC-->
+        <scene sceneID="8y6-ew-rhZ">
+            <objects>
+                <viewController id="aYp-5j-eVH" customClass="ScrapeGameVC" customModule="JeopardyParse_Play" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="nxx-PB-zPr"/>
+                        <viewControllerLayoutGuide type="bottom" id="dO9-Ps-7Nl"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ol3-EE-2s5">
+                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="3VY-0r-pvG">
+                                <rect key="frame" x="323" y="177" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="color" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Loading Game" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h9s-IE-iXQ">
+                                <rect key="frame" x="260" y="205" width="146" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="21"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0078431372550000003" green="0.14117647059999999" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <connections>
+                        <outlet property="loadingGraphic" destination="3VY-0r-pvG" id="Gkb-5h-6ha"/>
+                        <outlet property="loadingLabel" destination="h9s-IE-iXQ" id="CHi-YH-UVS"/>
+                        <segue destination="iaQ-oY-Je4" kind="show" identifier="toGame" id="xhD-yd-ZCN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HAR-0O-r6a" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="412" y="-626"/>
         </scene>
         <!--GameVC-->
         <scene sceneID="s52-xt-l3b">
@@ -275,6 +309,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="YZA-6n-ndI"/>
+        <segue reference="xhD-yd-ZCN"/>
     </inferredMetricsTieBreakers>
 </document>
