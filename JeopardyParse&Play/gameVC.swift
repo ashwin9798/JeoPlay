@@ -19,8 +19,11 @@ var arrayOfQuestions = [String]()
 var PositionArrayOfBlankQuestions = [Int]()
 var arrayOfQuestionCells = [questionButtonCell]()
 var arrayOfAnswers = [String]()
+var arrayOfCategories = [String]()
 
 var speechRecognitionEnabled = false
+
+var gameCurrentlyGoing = false
 
 var score = 0
 
@@ -39,11 +42,7 @@ class gameVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
     
     var count = 0
     
-    //variable holding game links before random selection
-    var temporaryArrayOfGameLinks = [String]()
-    
-    //variable to hold all category names
-    var arrayOfCategories = [String]()
+    @IBOutlet weak var scoreLabel: UILabel!
     
     @IBOutlet weak var collectionViewOfCategories: UICollectionView!
     
@@ -51,6 +50,12 @@ class gameVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        collectionViewOfQuestionButtons.delegate = self
+        collectionViewOfCategories.delegate = self
+        
+        collectionViewOfCategories.dataSource = self
+        collectionViewOfQuestionButtons.dataSource = self
         
         speechRecognizer?.delegate = self
         
@@ -73,125 +78,22 @@ class gameVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
                 print("Speech recognition not yet authorized")
             }
         }
-        
-        let whichSeason = arc4random_uniform(33) + 1
-        
-        self.scrapeJArchiveGameList(gameURL: "http://j-archive.com/showseason.php?season=\(whichSeason)")
-        // Do any additional setup after loading the view.
     
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if(gameCurrentlyGoing){
+            self.collectionViewOfQuestionButtons.reloadData()
+            scoreLabel.isHidden = false
+            scoreLabel.text = "Score: $\(score)"
+        }
+        else{
+            scoreLabel.isHidden = true
+        }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    
-    func scrapeJArchiveGameList(gameURL: String) {
-        
-        Alamofire.request(gameURL).responseString { response in
-            print("\(response.result.isSuccess)")
-            if let html = response.result.value {
-                self.parseGameList(html: html)
-            }
-        }
-    }
-    
-    func parseGameList(html: String){
-        
-        if let doc = Kanna.HTML(html: html, encoding: String.Encoding.utf8){
-            
-            let bodyNode = doc.body
-            
-            if let inputNodes = bodyNode?.xpath("//a/@href"){
-                
-                for node in inputNodes{
-                    
-                    count += 1
-                    
-                    if(count > 7){
-                        if(node.content?.range(of: "http://www.j-archive.com/showgame.php?game_id=") != nil){
-                            
-                            temporaryArrayOfGameLinks.append(node.content!)
-                            
-                        }
-                    }
-                }
-            }
-            
-        }
-        
-        let pickRandomGameNumber = Int(arc4random_uniform(UInt32(temporaryArrayOfGameLinks.count)))
-        
-        htmlGameString = temporaryArrayOfGameLinks[pickRandomGameNumber]
-        scrapeJArchiveGameTable(gameURL:(temporaryArrayOfGameLinks[pickRandomGameNumber]))
-        
-    }
-    
-    func scrapeJArchiveGameTable(gameURL: String){
-        
-        Alamofire.request(gameURL).responseString { response in
-            print("\(response.result.isSuccess)")
-            if let html = response.result.value {
-                self.parseGameTable(html: html)
-            }
-        }
-    }
-    
-    func parseGameTable(html: String){
-    
-        if let doc = Kanna.HTML(html: html, encoding: String.Encoding.utf8){
-            
-            let bodyNode = doc.body
-            
-            if let categories = bodyNode?.xpath("//td[@class='category_name']"){
-                
-                for node in categories{
-                    arrayOfCategories.append(node.content!)
-                    print(node.content!)
-                }
-                
-            }
-            
-            if let numberOfQuestions = bodyNode?.xpath("//td[@class='clue']"){
-            
-                var count = 0
-                
-                for node in numberOfQuestions{
-    
-                    if(node.text! == ""){
-                        PositionArrayOfBlankQuestions.append(count)
-                    }
-                    count += 1
-                }
-            
-            }
-            
-            if let questions = bodyNode?.xpath("//td[@class='clue_text']"){
-                
-                for node in questions{
-                    arrayOfQuestions.append(node.text!)
-                    print(node.text!)
-                }
-                
-            }
-            
-            if let answers = bodyNode?.xpath("//div/@onmouseover"){
-                for node in answers{
-                    arrayOfAnswers.append(extractAnswerFromNode(elements: node.text!))
-                    print(extractAnswerFromNode(elements: node.text!))
-                }
-            }
-            
-        }
-        
-        collectionViewOfCategories.delegate = self
-        collectionViewOfCategories.dataSource = self
-        
-        collectionViewOfQuestionButtons.delegate = self
-        collectionViewOfQuestionButtons.dataSource = self
-        
-    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
@@ -217,9 +119,16 @@ class gameVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
             
         }
         
-        else {
-            
+        else
+        {
             let cell = collectionViewOfQuestionButtons.dequeueReusableCell(withReuseIdentifier: "questionButtonCell", for: indexPath) as! questionButtonCell
+            
+            if(gameCurrentlyGoing){
+                if(arrayOfQuestionCells[indexPath.row].questionAlreadyChosen){
+                cell.questionMoney.text = ""
+                return cell
+                }
+            }
             
             if(PositionArrayOfBlankQuestions.count > 0){
                 for index in 0...PositionArrayOfBlankQuestions.count-1{
@@ -228,12 +137,12 @@ class gameVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
                         cell.questionMoney.text = ""
                         cell.questionAlreadyChosen = true
                         
-                        arrayOfQuestionCells.append(cell)
+                        if(!gameCurrentlyGoing){
+                            arrayOfQuestionCells.append(cell)
+                        }
                         
                         return cell
                     }
-                    
-                    
                 }
             }
             
@@ -253,28 +162,13 @@ class gameVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
                 cell.questionMoney.text = "$1000"
             }
             
-            arrayOfQuestionCells.append(cell)
+            if(!gameCurrentlyGoing){
+                arrayOfQuestionCells.append(cell)
+            }
             
             return cell
-            
         }
         
-    }
-    
-    func extractAnswerFromNode(elements: String) -> String{
-        
-        var substring = ""
-        
-        for index in 71...elements.characters.count-1{
-            
-            if(elements[index] == "<"){
-                
-                substring = elements[70..<index]
-                break
-                
-            }
-        }
-        return substring
         
     }
     
@@ -299,6 +193,7 @@ class gameVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
             }
             
             if(!arrayOfQuestionCells[indexPath.row].questionAlreadyChosen){
+                arrayOfQuestionCells[indexPath.row].questionAlreadyChosen = true
                 performSegue(withIdentifier: "toQuestion", sender: Any?.self)
                 //cell.questionAlreadyChosen = true
             }

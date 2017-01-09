@@ -17,6 +17,7 @@
 		774B61C41E21C30200F2E403 /* questionButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774B61C31E21C30200F2E403 /* questionButtonCell.swift */; };
 		774B61C61E21DA8F00F2E403 /* questionVCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774B61C51E21DA8F00F2E403 /* questionVCViewController.swift */; };
 		774B61D31E223C4E00F2E403 /* indexString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774B61D21E223C4E00F2E403 /* indexString.swift */; };
+		774B61D51E23374300F2E403 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774B61D41E23374300F2E403 /* ResultViewController.swift */; };
 		B01AE62EF82E214FFD8A22CE /* Pods_JeopardyParse_Play.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0523C36646C81486A7504B2A /* Pods_JeopardyParse_Play.framework */; };
 /* End PBXBuildFile section */
 
@@ -36,6 +37,7 @@
 		774B61C31E21C30200F2E403 /* questionButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = questionButtonCell.swift; sourceTree = "<group>"; };
 		774B61C51E21DA8F00F2E403 /* questionVCViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = questionVCViewController.swift; sourceTree = "<group>"; };
 		774B61D21E223C4E00F2E403 /* indexString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = indexString.swift; sourceTree = "<group>"; };
+		774B61D41E23374300F2E403 /* ResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 				773A53961E1F4C8700EA4A0A /* gameVC.swift */,
 				773A53881E1F241400EA4A0A /* Main.storyboard */,
 				774B61C51E21DA8F00F2E403 /* questionVCViewController.swift */,
+				774B61D41E23374300F2E403 /* ResultViewController.swift */,
 				774B61C11E21BD0E00F2E403 /* CategoryTitleCellCollectionViewCell.swift */,
 				774B61C31E21C30200F2E403 /* questionButtonCell.swift */,
 				774B61D21E223C4E00F2E403 /* indexString.swift */,
@@ -230,6 +233,7 @@
 				773A53871E1F241400EA4A0A /* ViewController.swift in Sources */,
 				774B61D31E223C4E00F2E403 /* indexString.swift in Sources */,
 				773A53851E1F241400EA4A0A /* AppDelegate.swift in Sources */,
+				774B61D51E23374300F2E403 /* ResultViewController.swift in Sources */,
 				773A53971E1F4C8700EA4A0A /* gameVC.swift in Sources */,
 				774B61C41E21C30200F2E403 /* questionButtonCell.swift in Sources */,
 				774B61C21E21BD0E00F2E403 /* CategoryTitleCellCollectionViewCell.swift in Sources */,
