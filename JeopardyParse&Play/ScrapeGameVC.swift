@@ -165,15 +165,16 @@ class ScrapeGameVC: UIViewController {
                 if(elements[index1-1] == "\"" || elements[index1-1] == "i")
                 {
                     if(elements[index1-1] == "\""){
-                        if(elements[index1-18..<(index1)] == "\"correct_response\""){
+                        if(elements[index1-18..<(index1)] == "\"correct_response\"" && elements[index1+1] != "<"){
                             print("\"correct_response\"")
                             startPos = index1
+                            break
                         }
                     }
-                    else{
+                    else if(elements[index1-1] == "i"){
                         startPos = index1
+                        break
                     }
-                    break
                 }
             }
         }
