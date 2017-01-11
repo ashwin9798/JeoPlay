@@ -115,9 +115,10 @@ class questionVCViewController: UIViewController {
         recordingGraphic.isHidden = false
         
         if(timeLeft1 == 0){
+            timeLeftToAnswerLabel.isHidden = true
+            timeLeftToBuzz.invalidate()
             self.wasCorrectAnswer = 3
             performSegue(withIdentifier: "toResult", sender: Any?.self)
-            timeLeftToBuzz.invalidate()
         }
         timeLeft1 -= 1
         timeLeftToAnswerLabel.text = "you have \(timeLeft1) seconds to buzz"
@@ -169,11 +170,13 @@ class questionVCViewController: UIViewController {
             if result != nil && !self.speechRecognizedAlready{
                 
                 //different sentence structures
-                if((result?.bestTranscription.formattedString)!.lowercased() == "what is \(arrayOfAnswers[indexPathOfChosenQuestion].lowercased())"
-                    || (result?.bestTranscription.formattedString)!.lowercased() == "what are \(arrayOfAnswers[indexPathOfChosenQuestion].lowercased())"
-                    || (result?.bestTranscription.formattedString)!.lowercased() == "who is \(arrayOfAnswers[indexPathOfChosenQuestion].lowercased())"
-                    || (result?.bestTranscription.formattedString)!.lowercased() == "who are \(arrayOfAnswers[indexPathOfChosenQuestion].lowercased())"
-                    || (result?.bestTranscription.formattedString)!.lowercased() == "where is \(arrayOfAnswers[indexPathOfChosenQuestion].lowercased())"){
+                if(
+                    self.isAnswerCloseEnough(recognizedAnswer: (result?.bestTranscription.formattedString)!.lowercased(), actualAnswer: "what is \(arrayOfAnswers[indexPathOfChosenQuestion].lowercased())")
+                    
+                    || self.isAnswerCloseEnough(recognizedAnswer: (result?.bestTranscription.formattedString)!.lowercased(), actualAnswer: "what are \(arrayOfAnswers[indexPathOfChosenQuestion].lowercased())")
+                    || self.isAnswerCloseEnough(recognizedAnswer: (result?.bestTranscription.formattedString)!.lowercased(), actualAnswer: "who is \(arrayOfAnswers[indexPathOfChosenQuestion].lowercased())")
+                    || self.isAnswerCloseEnough(recognizedAnswer: (result?.bestTranscription.formattedString)!.lowercased(), actualAnswer: "wh0 are \(arrayOfAnswers[indexPathOfChosenQuestion].lowercased())")
+                    || self.isAnswerCloseEnough(recognizedAnswer: (result?.bestTranscription.formattedString)!.lowercased(), actualAnswer: "where is \(arrayOfAnswers[indexPathOfChosenQuestion].lowercased())")){
                     
                     print("Your answer: \((result?.bestTranscription.formattedString)!.lowercased())")
                     print("Correct answer: \(arrayOfAnswers[indexPathOfChosenQuestion].lowercased())")
@@ -271,19 +274,19 @@ class questionVCViewController: UIViewController {
                 
             case 1:
                 answerData.rightOrWrongLabelText = "Sorry, that's incorrect";
-                answerData.correctAnswerLabelText = "the correct answer was:                              what is \(arrayOfAnswers[indexPathOfChosenQuestion])?";
+                answerData.correctAnswerLabelText = "the correct response was:                              what is \(arrayOfAnswers[indexPathOfChosenQuestion])?";
                 answerData.scoreLabelText = "Score: $\(score)";
                 break;
                 
             case 2:
-                answerData.rightOrWrongLabelText = "Oops, we cannot recognize this answer, even if you were right! (No point deduction)";
-                answerData.correctAnswerLabelText = "the correct answer was:                              what is \(arrayOfAnswers[indexPathOfChosenQuestion])?";
+                answerData.rightOrWrongLabelText = "Oops, we didn't detect a valid answer!";
+                answerData.correctAnswerLabelText = "the correct response was:                              what is \(arrayOfAnswers[indexPathOfChosenQuestion])?";
                 answerData.scoreLabelText =  "Score: $\(score)";
                 break;
                 
             case 3:
                 answerData.rightOrWrongLabelText = "You didn't buzz!";
-                answerData.correctAnswerLabelText = "the correct answer was:                              what is \(arrayOfAnswers[indexPathOfChosenQuestion])";
+                answerData.correctAnswerLabelText = "the correct response was:                              what is \(arrayOfAnswers[indexPathOfChosenQuestion])?";
                 answerData.scoreLabelText =  "Score: $\(score)";
                 
             default:
@@ -293,16 +296,62 @@ class questionVCViewController: UIViewController {
         
         }
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    func isAnswerCloseEnough(recognizedAnswer: String, actualAnswer: String) -> Bool{
+        
+        var lastSpace = -1
+        var lastSpace1 = -1
+        var arrayOfWordsInActualAnswer = [String]()
+        var arrayOfWordsInRecognizedAnswer = [String]()
+        
+        var numberOfMatchingWords = 0
+        
+        for index in 0...actualAnswer.characters.count-1{
+            
+            if(actualAnswer[index] == " "){
+                
+                arrayOfWordsInActualAnswer.append(actualAnswer[lastSpace+1..<index])
+                lastSpace = index
+            }
+            if(index == actualAnswer.characters.count-1){
+                
+                arrayOfWordsInActualAnswer.append(actualAnswer[lastSpace+1..<index+1])
+            }
+        }
+        
+        for index in 0...recognizedAnswer.characters.count-1{
+            
+            if(recognizedAnswer[index] == " "){
+                
+                arrayOfWordsInRecognizedAnswer.append(recognizedAnswer[lastSpace1+1..<index])
+                lastSpace1 = index
+            }
+            if(index == recognizedAnswer.characters.count-1){
+                
+                arrayOfWordsInRecognizedAnswer.append(recognizedAnswer[lastSpace1+1..<index+1])
+            }
+        }
+        
+        for index in 0...arrayOfWordsInActualAnswer.count-1{
+            
+            for index1 in 0...arrayOfWordsInRecognizedAnswer.count-1{
+             
+                if(arrayOfWordsInRecognizedAnswer[index1].lowercased() == arrayOfWordsInActualAnswer[index].lowercased()){
+                    
+                    numberOfMatchingWords += 1
+                    
+                }
+                
+            }
+        }
+        
+        if(arrayOfWordsInActualAnswer.count - numberOfMatchingWords < arrayOfWordsInActualAnswer.count - 2){
+            return true
+        }
+        else{
+            return false
+        }
+        
     }
-    */
 
 }

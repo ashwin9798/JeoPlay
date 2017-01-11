@@ -118,11 +118,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JeopardyParse&amp;Play/questionVCViewController.swift"
-            timestampString = "505646423.786856"
+            timestampString = "505728096.528313"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "234"
-            endingLineNumber = "234"
+            startingLineNumber = "235"
+            endingLineNumber = "235"
             landmarkName = "startRecording()"
             landmarkType = "7">
          </BreakpointContent>
@@ -134,11 +134,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JeopardyParse&amp;Play/questionVCViewController.swift"
-            timestampString = "505646423.786856"
+            timestampString = "505728096.528313"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "215"
-            endingLineNumber = "215"
+            startingLineNumber = "216"
+            endingLineNumber = "216"
             landmarkName = "startRecording()"
             landmarkType = "7">
          </BreakpointContent>
@@ -166,11 +166,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JeopardyParse&amp;Play/questionVCViewController.swift"
-            timestampString = "505644777.511718"
+            timestampString = "505728096.528313"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "135"
-            endingLineNumber = "135"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
             landmarkName = "questionVCViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -182,27 +182,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JeopardyParse&amp;Play/questionVCViewController.swift"
-            timestampString = "505646423.786856"
+            timestampString = "505728096.528313"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "236"
-            endingLineNumber = "236"
-            landmarkName = "questionVCViewController"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "JeopardyParse&amp;Play/questionVCViewController.swift"
-            timestampString = "505646423.786856"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "170"
-            endingLineNumber = "170"
+            startingLineNumber = "237"
+            endingLineNumber = "237"
             landmarkName = "startRecording()"
             landmarkType = "7">
          </BreakpointContent>
@@ -214,11 +198,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JeopardyParse&amp;Play/questionVCViewController.swift"
-            timestampString = "505644777.511718"
+            timestampString = "505728096.528313"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "168"
-            endingLineNumber = "168"
+            startingLineNumber = "171"
+            endingLineNumber = "171"
             landmarkName = "startRecording()"
             landmarkType = "7">
          </BreakpointContent>
@@ -230,11 +214,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JeopardyParse&amp;Play/questionVCViewController.swift"
-            timestampString = "505646423.786856"
+            timestampString = "505728096.528313"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "195"
-            endingLineNumber = "195"
+            startingLineNumber = "169"
+            endingLineNumber = "169"
             landmarkName = "startRecording()"
             landmarkType = "7">
          </BreakpointContent>
@@ -246,11 +230,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JeopardyParse&amp;Play/questionVCViewController.swift"
-            timestampString = "505646423.786856"
+            timestampString = "505728096.528313"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "183"
-            endingLineNumber = "183"
+            startingLineNumber = "196"
+            endingLineNumber = "196"
             landmarkName = "startRecording()"
             landmarkType = "7">
          </BreakpointContent>
@@ -262,13 +246,29 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JeopardyParse&amp;Play/questionVCViewController.swift"
-            timestampString = "505646423.786856"
+            timestampString = "505728096.528313"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "256"
-            endingLineNumber = "256"
-            landmarkName = "questionVCViewController"
-            landmarkType = "3">
+            startingLineNumber = "184"
+            endingLineNumber = "184"
+            landmarkName = "startRecording()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "JeopardyParse&amp;Play/questionVCViewController.swift"
+            timestampString = "505728096.528313"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "257"
+            endingLineNumber = "257"
+            landmarkName = "questionValue()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -450,7 +450,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JeopardyParse&amp;Play/ScrapeGameVC.swift"
@@ -466,7 +466,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JeopardyParse&amp;Play/ScrapeGameVC.swift"
@@ -476,6 +476,70 @@
             startingLineNumber = "147"
             endingLineNumber = "147"
             landmarkName = "parseGameTable(html:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "JeopardyParse&amp;Play/gameVC.swift"
+            timestampString = "505728088.967675"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "JeopardyParse_Play.gameVC.viewDidLoad () -&gt; ()"
+                  moduleName = "JeopardyParse&amp;Play"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ashwinvivek/Documents/UCLA%20Documents/Apps/JeopardyParse&amp;Play/JeopardyParse&amp;Play/gameVC.swift"
+                  timestampString = "505728499.421573"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "80"
+                  endingLineNumber = "80"
+                  offsetFromSymbolStart = "1156">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "JeopardyParse_Play.gameVC.(viewDidLoad () -&gt; ()).(closure #1)"
+                  moduleName = "JeopardyParse&amp;Play"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ashwinvivek/Documents/UCLA%20Documents/Apps/JeopardyParse&amp;Play/JeopardyParse&amp;Play/gameVC.swift"
+                  timestampString = "505728499.4249"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "80"
+                  endingLineNumber = "80"
+                  offsetFromSymbolStart = "592">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "JeopardyParse&amp;Play/ScrapeGameVC.swift"
+            timestampString = "505729544.141338"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "191"
+            endingLineNumber = "191"
+            landmarkName = "extractAnswerFromNode(elements:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

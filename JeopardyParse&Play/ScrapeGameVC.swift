@@ -187,7 +187,12 @@ class ScrapeGameVC: UIViewController {
                 
             }
         }
-        return substring
         
+        substring = substring.replacingOccurrences(of: "\\", with: "", options: NSString.CompareOptions.literal, range: nil)
+        
+        return substring
     }
+    
+    
+    
 }
