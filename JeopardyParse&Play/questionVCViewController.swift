@@ -39,6 +39,7 @@ class questionVCViewController: UIViewController {
     
     // either correct, incorrect, or no answer
     var wasCorrectAnswer: Int = 0
+    var answerHeard: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -195,6 +196,7 @@ class questionVCViewController: UIViewController {
                     
                     score -= self.questionValue()
                     self.wasCorrectAnswer = 1
+                    self.answerHeard = (result?.bestTranscription.formattedString)!.lowercased()
                     self.speechRecognizedAlready = true
                     
                     self.performSegue(withIdentifier: "toResult", sender: Any?.self)
@@ -274,7 +276,7 @@ class questionVCViewController: UIViewController {
                 
             case 1:
                 answerData.rightOrWrongLabelText = "Sorry, that's incorrect";
-                answerData.correctAnswerLabelText = "the correct response was:                              what is \(arrayOfAnswers[indexPathOfChosenQuestion])?";
+                answerData.correctAnswerLabelText = "the correct response was:                              \(questionFormatForAnswerScreen(recognizedAnswer: answerHeard)) \(arrayOfAnswers[indexPathOfChosenQuestion])?";
                 answerData.scoreLabelText = "Score: $\(score)";
                 break;
                 
@@ -352,6 +354,26 @@ class questionVCViewController: UIViewController {
             return false
         }
         
+    }
+    
+    
+    func questionFormatForAnswerScreen(recognizedAnswer: String)->String{
+        //returns the question format of answer when user is wrong
+        var whiteSpaceCount = 0
+        var indexOfSpace = 0
+        var questionString = ""
+        
+        for index in 0...recognizedAnswer.characters.count-1{
+            if(recognizedAnswer[index] == " "){
+                whiteSpaceCount += 1;
+                if(whiteSpaceCount == 2){
+                    indexOfSpace = index
+                    break
+                }
+            }
+        }
+        questionString = recognizedAnswer[0..<indexOfSpace]
+        return questionString
     }
 
 }
