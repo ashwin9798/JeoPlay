@@ -9,7 +9,8 @@
 import UIKit
 import Kanna
 import Alamofire
-
+import Firebase
+import FirebaseDatabase
 
 class ScrapeGameVC: UIViewController {
     

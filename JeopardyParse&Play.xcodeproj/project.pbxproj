@@ -19,6 +19,9 @@
 		774B61D31E223C4E00F2E403 /* indexString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774B61D21E223C4E00F2E403 /* indexString.swift */; };
 		774B61D51E23374300F2E403 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774B61D41E23374300F2E403 /* ResultViewController.swift */; };
 		774B61D71E23F3D700F2E403 /* ScrapeGameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774B61D61E23F3D700F2E403 /* ScrapeGameVC.swift */; };
+		777781AE1E275F950030ACD1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 777781AD1E275F950030ACD1 /* GoogleService-Info.plist */; };
+		777781B01E2764F60030ACD1 /* UsernameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777781AF1E2764F60030ACD1 /* UsernameViewController.swift */; };
+		777781B21E2767860030ACD1 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777781B11E2767860030ACD1 /* Player.swift */; };
 		B01AE62EF82E214FFD8A22CE /* Pods_JeopardyParse_Play.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0523C36646C81486A7504B2A /* Pods_JeopardyParse_Play.framework */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +43,9 @@
 		774B61D21E223C4E00F2E403 /* indexString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = indexString.swift; sourceTree = "<group>"; };
 		774B61D41E23374300F2E403 /* ResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		774B61D61E23F3D700F2E403 /* ScrapeGameVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrapeGameVC.swift; sourceTree = "<group>"; };
+		777781AD1E275F950030ACD1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		777781AF1E2764F60030ACD1 /* UsernameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsernameViewController.swift; sourceTree = "<group>"; };
+		777781B11E2767860030ACD1 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,13 +81,16 @@
 		773A53831E1F241400EA4A0A /* JeopardyParse&Play */ = {
 			isa = PBXGroup;
 			children = (
+				777781AD1E275F950030ACD1 /* GoogleService-Info.plist */,
 				773A53841E1F241400EA4A0A /* AppDelegate.swift */,
 				773A53861E1F241400EA4A0A /* ViewController.swift */,
-				773A53961E1F4C8700EA4A0A /* gameVC.swift */,
-				773A53881E1F241400EA4A0A /* Main.storyboard */,
+				777781AF1E2764F60030ACD1 /* UsernameViewController.swift */,
+				777781B11E2767860030ACD1 /* Player.swift */,
 				774B61D61E23F3D700F2E403 /* ScrapeGameVC.swift */,
+				773A53961E1F4C8700EA4A0A /* gameVC.swift */,
 				774B61C51E21DA8F00F2E403 /* questionVCViewController.swift */,
 				774B61D41E23374300F2E403 /* ResultViewController.swift */,
+				773A53881E1F241400EA4A0A /* Main.storyboard */,
 				774B61C11E21BD0E00F2E403 /* CategoryTitleCellCollectionViewCell.swift */,
 				774B61C31E21C30200F2E403 /* questionButtonCell.swift */,
 				774B61D21E223C4E00F2E403 /* indexString.swift */,
@@ -172,6 +181,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				777781AE1E275F950030ACD1 /* GoogleService-Info.plist in Resources */,
 				773A538F1E1F241400EA4A0A /* LaunchScreen.storyboard in Resources */,
 				773A538C1E1F241400EA4A0A /* Assets.xcassets in Resources */,
 				773A538A1E1F241400EA4A0A /* Main.storyboard in Resources */,
@@ -233,6 +243,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				777781B21E2767860030ACD1 /* Player.swift in Sources */,
+				777781B01E2764F60030ACD1 /* UsernameViewController.swift in Sources */,
 				773A53871E1F241400EA4A0A /* ViewController.swift in Sources */,
 				774B61D31E223C4E00F2E403 /* indexString.swift in Sources */,
 				773A53851E1F241400EA4A0A /* AppDelegate.swift in Sources */,

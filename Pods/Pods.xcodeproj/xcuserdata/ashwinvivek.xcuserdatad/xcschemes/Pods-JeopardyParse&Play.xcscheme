@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "84C9EF5F6B21366B610DEA2BCFD164EE"
+               BlueprintIdentifier = "A754B41B8535A3E1ED9ECC9E1C86A0ED"
                BuildableName = "Pods_JeopardyParse_Play.framework"
                BlueprintName = "Pods-JeopardyParse&amp;Play"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "84C9EF5F6B21366B610DEA2BCFD164EE"
+            BlueprintIdentifier = "A754B41B8535A3E1ED9ECC9E1C86A0ED"
             BuildableName = "Pods_JeopardyParse_Play.framework"
             BlueprintName = "Pods-JeopardyParse&amp;Play"
             ReferencedContainer = "container:Pods.xcodeproj">
