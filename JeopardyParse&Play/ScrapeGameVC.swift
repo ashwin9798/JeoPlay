@@ -141,10 +141,11 @@ class ScrapeGameVC: UIViewController {
             if let answers = bodyNode?.xpath("//div/@onmouseover"){
                 for node in answers{
                     if(!gameCurrentlyGoing){
-                        arrayOfAnswers.append(extractAnswerFromNode(elements: node.text!))
+                        arrayOfAnswers.append(extractAnswerFromNode(elements: node.text!, forVoiceComparison: false))
+                        arrayOfAnswersToCompareWithVoice.append(extractAnswerFromNode(elements: node.text!, forVoiceComparison: true))
                     }
                     print (node.text!)
-                    print(extractAnswerFromNode(elements: node.text!))
+                    print(extractAnswerFromNode(elements: node.text!, forVoiceComparison: false))
                 }
             }
             
@@ -153,8 +154,8 @@ class ScrapeGameVC: UIViewController {
         performSegue(withIdentifier: "toGame", sender: Any?.self)
     }
     
-    func extractAnswerFromNode(elements: String) -> String{
-        
+    func extractAnswerFromNode(elements: String, forVoiceComparison: Bool) -> String{
+        //bool is for different append actions for different arrays.
         var substring = ""
         var startPos = 0
         
@@ -166,7 +167,6 @@ class ScrapeGameVC: UIViewController {
                 {
                     if(elements[index1-1] == "\""){
                         if(elements[index1-18..<(index1)] == "\"correct_response\"" && elements[index1+1] != "<"){
-                            print("\"correct_response\"")
                             startPos = index1
                             break
                         }
@@ -191,9 +191,13 @@ class ScrapeGameVC: UIViewController {
         
         substring = substring.replacingOccurrences(of: "\\", with: "", options: NSString.CompareOptions.literal, range: nil)
         
+        if(forVoiceComparison){
+        substring = substring.replacingOccurrences(of: "(", with: "", options: NSString.CompareOptions.literal, range: nil)
+        substring = substring.replacingOccurrences(of: ")", with: "", options: NSString.CompareOptions.literal, range: nil)
+        substring = substring.replacingOccurrences(of: "\"", with: "", options: NSString.CompareOptions.literal, range: nil)
+        }
+        
         return substring
     }
-    
-    
     
 }

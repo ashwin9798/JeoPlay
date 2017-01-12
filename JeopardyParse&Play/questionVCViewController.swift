@@ -171,17 +171,25 @@ class questionVCViewController: UIViewController {
             if result != nil && !self.speechRecognizedAlready{
                 
                 //different sentence structures
+                
+                if(self.questionFormatForAnswerScreen(recognizedAnswer: (result?.bestTranscription.formattedString)!.lowercased()) == "not a response"){
+                    self.wasCorrectAnswer = 4
+                    score -= self.questionValue()
+                    self.speechRecognizedAlready = true
+                    self.performSegue(withIdentifier: "toResult", sender: Any?.self)
+                }
+                
                 if(
-                    self.isAnswerCloseEnough(recognizedAnswer: (result?.bestTranscription.formattedString)!.lowercased(), actualAnswer: "what is \(arrayOfAnswers[indexPathOfChosenQuestion].lowercased())")
-                    
-                    || self.isAnswerCloseEnough(recognizedAnswer: (result?.bestTranscription.formattedString)!.lowercased(), actualAnswer: "what are \(arrayOfAnswers[indexPathOfChosenQuestion].lowercased())")
-                    || self.isAnswerCloseEnough(recognizedAnswer: (result?.bestTranscription.formattedString)!.lowercased(), actualAnswer: "who is \(arrayOfAnswers[indexPathOfChosenQuestion].lowercased())")
-                    || self.isAnswerCloseEnough(recognizedAnswer: (result?.bestTranscription.formattedString)!.lowercased(), actualAnswer: "wh0 are \(arrayOfAnswers[indexPathOfChosenQuestion].lowercased())")
-                    || self.isAnswerCloseEnough(recognizedAnswer: (result?.bestTranscription.formattedString)!.lowercased(), actualAnswer: "where is \(arrayOfAnswers[indexPathOfChosenQuestion].lowercased())")){
+                    self.isAnswerCloseEnough(recognizedAnswer: (result?.bestTranscription.formattedString)!.lowercased(), actualAnswer: "what is \(arrayOfAnswersToCompareWithVoice[indexPathOfChosenQuestion].lowercased())")
+                    || self.isAnswerCloseEnough(recognizedAnswer: (result?.bestTranscription.formattedString)!.lowercased(), actualAnswer: "what are \(arrayOfAnswersToCompareWithVoice[indexPathOfChosenQuestion].lowercased())")
+                    || self.isAnswerCloseEnough(recognizedAnswer: (result?.bestTranscription.formattedString)!.lowercased(), actualAnswer: "who is \(arrayOfAnswersToCompareWithVoice[indexPathOfChosenQuestion].lowercased())")
+                    || self.isAnswerCloseEnough(recognizedAnswer: (result?.bestTranscription.formattedString)!.lowercased(), actualAnswer: "who are \(arrayOfAnswersToCompareWithVoice[indexPathOfChosenQuestion].lowercased())")
+                    || self.isAnswerCloseEnough(recognizedAnswer: (result?.bestTranscription.formattedString)!.lowercased(), actualAnswer: "where is \(arrayOfAnswersToCompareWithVoice[indexPathOfChosenQuestion].lowercased())")){
                     
                     print("Your answer: \((result?.bestTranscription.formattedString)!.lowercased())")
                     print("Correct answer: \(arrayOfAnswers[indexPathOfChosenQuestion].lowercased())")
                     
+                
                     score += self.questionValue()
                     self.wasCorrectAnswer = 0
                     self.speechRecognizedAlready = true
@@ -290,7 +298,14 @@ class questionVCViewController: UIViewController {
                 answerData.rightOrWrongLabelText = "You didn't buzz!";
                 answerData.correctAnswerLabelText = "the correct response was:                              what is \(arrayOfAnswers[indexPathOfChosenQuestion])?";
                 answerData.scoreLabelText =  "Score: $\(score)";
-                
+                break;
+            
+            case 4:
+                answerData.rightOrWrongLabelText = "Oops, you didn't phrase your response as a question!";
+                answerData.correctAnswerLabelText = "the correct response was:                               what is \(arrayOfAnswers[indexPathOfChosenQuestion])?";
+                answerData.scoreLabelText =  "Score: $\(score)";
+                break;
+
             default:
                 break;
             
@@ -373,7 +388,13 @@ class questionVCViewController: UIViewController {
             }
         }
         questionString = recognizedAnswer[0..<indexOfSpace]
-        return questionString
+        
+        if(questionString == "what is" || questionString == "what are" || questionString == "who is" || questionString == "where is" || questionString == "who are"){
+            return questionString
+        }
+        else{
+            return "not a response"
+        }
     }
 
 }

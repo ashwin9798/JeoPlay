@@ -19,6 +19,7 @@ var arrayOfQuestions = [String]()
 var PositionArrayOfBlankQuestions = [Int]()
 var arrayOfQuestionCells = [questionButtonCell]()
 var arrayOfAnswers = [String]()
+var arrayOfAnswersToCompareWithVoice = [String]()
 var arrayOfCategories = [String]()
 
 var speechRecognitionEnabled = false

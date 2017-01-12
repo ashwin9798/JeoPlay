@@ -21,28 +21,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Jeopardy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PFP-Kc-hgc">
-                                <rect key="frame" x="297" y="135" width="72" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gds-FV-8xp">
-                                <rect key="frame" x="263" y="176" width="140" height="82"/>
+                                <rect key="frame" x="263" y="285" width="140" height="82"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="play"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="19"/>
+                                <state key="normal" title="Play">
+                                    <color key="titleColor" red="0.14901960784313725" green="0.20000000000000001" blue="0.70588235294117652" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <segue destination="aYp-5j-eVH" kind="show" id="lgb-bj-Z9Z"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="jeopardyimage" translatesAutoresizingMaskIntoConstraints="NO" id="Fyg-Os-cFP">
+                                <rect key="frame" x="78" y="47" width="510" height="257"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-113" y="137"/>
+            <point key="canvasLocation" x="-113.79310344827587" y="136.80000000000001"/>
         </scene>
         <!--Scrape GameVC-->
         <scene sceneID="8y6-ew-rhZ">
@@ -179,7 +179,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3ET-g0-Ti6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="761.46926536731644" y="136.80000000000001"/>
+            <point key="canvasLocation" x="769" y="137"/>
         </scene>
         <!--QuestionVC View Controller-->
         <scene sceneID="RpI-Ie-GBa">
@@ -308,6 +308,9 @@
             <point key="canvasLocation" x="2129.6851574212897" y="140"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="jeopardyimage" width="421" height="120"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="xhD-yd-ZCN"/>
     </inferredMetricsTieBreakers>
