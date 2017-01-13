@@ -40,7 +40,15 @@ class UsernameViewController: UIViewController, UITextFieldDelegate {
     @IBAction func buttonPressed(_ sender: Any) {
     
         myKey = ref.child("Players").childByAutoId().key
-    
+        myUsername = usernameField.text!
+        
+        let player = Player(key: myKey, username: myUsername, opponentKey: "", gameURL: "", isChoosingQuestion: false, isWaitingForOtherToAnswer: false, score: 0)
+        
+        let childUpdates = ["\(myKey)" : player.getSnapshotValue()]
+        
+        ref.updateChildValues(childUpdates)
+        
+        performSegue(withIdentifier: "toLoadingGame", sender: Any?.self)
     }
 
     /*

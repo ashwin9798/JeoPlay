@@ -9,8 +9,10 @@
 import UIKit
 import Kanna
 import Alamofire
-import Firebase
 import FirebaseDatabase
+
+var htmlGameString = ""     //variable holding the common url between the two players
+var opponentKey = ""
 
 class ScrapeGameVC: UIViewController {
     
@@ -20,6 +22,8 @@ class ScrapeGameVC: UIViewController {
     @IBOutlet weak var loadingGraphic: UIActivityIndicatorView!
     //variable holding game links before random selection
     var temporaryArrayOfGameLinks = [String]()
+    
+    var ref: FIRDatabaseReference = FIRDatabase.database().reference()
     
     open override var supportedInterfaceOrientations: UIInterfaceOrientationMask{
         get {
@@ -32,9 +36,41 @@ class ScrapeGameVC: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         UIDevice.current.setValue(UIInterfaceOrientation.landscapeRight.rawValue, forKey: "orientation")
         loadingGraphic.startAnimating()
+        loadingLabel.text = "Looking for opponents"
         
         let whichSeason = arc4random_uniform(33) + 1
+        
+        //Find opponents
+        
         self.scrapeJArchiveGameList(gameURL: "http://j-archive.com/showseason.php?season=\(whichSeason)")
+        
+        ref.observe(.childAdded, with: {(snapshot) in
+        
+            let observedKey = snapshot.key
+            let player = Player(snapshot: snapshot)
+            
+            if(!player.hasBeenChosen() && observedKey != myKey){
+
+                opponentKey = observedKey   //store for use later
+                
+                let competitorRef: FIRDatabaseReference = FIRDatabase.database().reference().child("\(observedKey)").child("opponentKey")
+                
+                competitorRef.setValue(myKey)
+                self.ref.child(observedKey).child("gameURL").setValue(htmlGameString)
+    
+                
+                self.ref.child("opponentKey").setValue(observedKey)
+                self.ref.child("gameURL").setValue(htmlGameString)
+                self.ref.child("isChoosingFirst").setValue(true)
+          
+                self.loadingLabel.text! = "Playing against \(player.getUsername)"
+            }
+            
+        })
+        scrapeJArchiveGameTable(gameURL: getURL(ref: ref.child("gameURL")))
+        
+        performSegue(withIdentifier: "toGame", sender: Any?.self)
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -79,13 +115,9 @@ class ScrapeGameVC: UIViewController {
         let pickRandomGameNumber = Int(arc4random_uniform(UInt32(temporaryArrayOfGameLinks.count)))
         
         htmlGameString = temporaryArrayOfGameLinks[pickRandomGameNumber]
-        scrapeJArchiveGameTable(gameURL:(temporaryArrayOfGameLinks[pickRandomGameNumber]))
-        
     }
     
     func scrapeJArchiveGameTable(gameURL: String){
-        
-        
         
         Alamofire.request(gameURL).responseString { response in
             print("\(response.result.isSuccess)")
@@ -150,8 +182,7 @@ class ScrapeGameVC: UIViewController {
             }
             
         }
-        
-        performSegue(withIdentifier: "toGame", sender: Any?.self)
+        //segue was here
     }
     
     func extractAnswerFromNode(elements: String) -> String{

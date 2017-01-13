@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import Kanna
 import Speech
+import FirebaseDatabase
 
 
 class questionVCViewController: UIViewController {
@@ -20,19 +21,18 @@ class questionVCViewController: UIViewController {
     @IBOutlet weak var buzzerButton: UIButton!
     @IBOutlet weak var recordingGraphic: UIActivityIndicatorView!
     
+    //Timer Variables
     var timer: Timer!
     
     var timeLeftToAnswer: Timer!
-    var timeLeft: Int = 7
+    var timeLeft: Int = 5
     var buzzerPressedAlready: Bool = false
     
     var timeLeftToBuzz: Timer!
-    var timeLeft1: Int = 7
+    var timeLeft1: Int = 10
     
-    var startRecordingTimer: Timer!
-    
+    //Speech Recognition variables
     var speechRecognizedAlready: Bool = false
-    
     private let speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "en-US"))
     private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
     private var recognitionTask: SFSpeechRecognitionTask?
@@ -41,6 +41,14 @@ class questionVCViewController: UIViewController {
     // either correct, incorrect, or no answer
     var wasCorrectAnswer: Int = 0
     var answerHeard: String = ""
+    
+    var firstPlayerAnswering: Bool = false
+    var secondPlayerAnswering: Bool = false
+    
+    //Firebase references
+    var myRef: FIRDatabaseReference = FIRDatabase.database().reference().child(myKey)   //reference for personal data
+    var opponentRef: FIRDatabaseReference = FIRDatabase.database().reference().child(opponentKey)   //reference for opponent data
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,13 +86,38 @@ class questionVCViewController: UIViewController {
         self.questionText.text = arrayOfQuestions[indexPathOfChosenQuestion]
         
         self.questionText.adjustsFontSizeToFitWidth = true
+        
+        firstPlayerAnswering = false
+        secondPlayerAnswering = false
 
         // Do any additional setup after loading the view.
     }
+    
+    
     @IBAction func buzzerPressed(_ sender: Any) {
         
-        startTimer()
-        timeLeftToBuzz.invalidate()
+        if(!isBuzzerInvalid(myRef: myRef) && !secondPlayerAnswering){
+            if(!firstPlayerAnswering){
+                firstPlayerAnswering = true
+            }
+            else{
+                secondPlayerAnswering = true
+            }
+            opponentRef.child("isWaitingForOtherToAnswer").setValue(true)
+            startTimer()
+            timeLeftToBuzz.invalidate()
+        }
+        else{
+            createAlertButton(whichAlert: 1)    //alert for when other person answering
+            myRef.child("isWaitingForOtherToAnswer").observe(.childChanged, with: {(snapshot) in
+                
+                let value = snapshot.value as! Bool
+                if(!value){
+                    self.createAlertButton(whichAlert: 2)
+                }
+                
+            })
+        }
     }
     
     func startTimer(){
@@ -376,5 +409,51 @@ class questionVCViewController: UIViewController {
         questionString = recognizedAnswer[0..<indexOfSpace]
         return questionString
     }
+    
+    func createAlertButton(whichAlert: Int) { //alert view for when buzz is invalid
+        
+        if(whichAlert == 1){
+        // create the alert
+            let alert = UIAlertController(title: "Your opponent buzzed first", message: "They are currently answering", preferredStyle: UIAlertControllerStyle.alert)
+        
+        // add the actions (buttons)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        
+        // show the alert
+            self.present(alert, animated: true, completion: nil)
+        }
+        if(whichAlert == 2){
+            
+            let alert = UIAlertController(title: "Your opponent answered incorrectly", message: "Do you still want to buzz?", preferredStyle: UIAlertControllerStyle.alert)
+            
+            // add the actions (buttons)
+            alert.addAction(UIAlertAction(title: "BUZZ", style: UIAlertActionStyle.default, handler:{ action in
+                
+                
+                
+            }))
+            
+            alert.addAction((UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil)))
+            
+            // show the alert
+            self.present(alert, animated: true, completion: nil)
+        }
+        
+    }
 
+}
+
+//function checking if the other person buzzed first, in which case, the value of self would be false (set value earlier)
+func isBuzzerInvalid(myRef: FIRDatabaseReference) -> Bool{
+    
+    var isInvalid = true
+    
+    myRef.child("isWaitingForOtherToAnswer").observeSingleEvent(of: .value, with: { (snapshot) in
+        
+        isInvalid = snapshot.value as! Bool
+        
+    })
+    
+    return isInvalid
+    
 }

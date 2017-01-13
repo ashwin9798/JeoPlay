@@ -111,7 +111,7 @@
                                 </state>
                                 <connections>
                                     <action selector="buttonPressed:" destination="yNc-gm-opA" eventType="touchUpInside" id="N3C-E5-WcG"/>
-                                    <segue destination="aYp-5j-eVH" kind="show" id="K4r-BJ-YWR"/>
+                                    <segue destination="aYp-5j-eVH" kind="show" identifier="toLoadingScreen" id="K4r-BJ-YWR"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -192,7 +192,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CpB-qr-d35">
-                                                    <rect key="frame" x="17" y="15" width="56" height="21"/>
+                                                    <rect key="frame" x="0.0" y="15" width="90" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="19"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -209,17 +209,17 @@
                                 </cells>
                             </collectionView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ZN5-Pq-LMu">
-                                <rect key="frame" x="0.0" y="97" width="667" height="270"/>
+                                <rect key="frame" x="0.0" y="106" width="667" height="261"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="4" id="kQV-Ng-Dep">
                                     <size key="itemSize" width="90" height="45"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="10" minY="5" maxX="10" maxY="5"/>
+                                    <inset key="sectionInset" minX="10" minY="3" maxX="10" maxY="3"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="questionButtonCell" id="AF9-Gm-kGM" customClass="questionButtonCell" customModule="JeopardyParse_Play" customModuleProvider="target">
-                                        <rect key="frame" x="10" y="5" width="90" height="45"/>
+                                        <rect key="frame" x="10" y="3" width="90" height="45"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="90" height="45"/>
@@ -382,6 +382,7 @@
                         <outlet property="correctAnswerLabel" destination="7Wa-7C-SLO" id="URx-MJ-oRH"/>
                         <outlet property="rightOrWrongLabel" destination="vIy-Qh-hs4" id="8dD-zW-b4V"/>
                         <outlet property="scoreLabel" destination="G3b-s1-uDJ" id="O8l-Lj-Zzs"/>
+                        <segue destination="iaQ-oY-Je4" kind="show" identifier="backToTableScreen" id="y1b-Ub-Dqr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="278-Hs-HZb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -393,6 +394,6 @@
         <image name="jeopardyimage" width="421" height="120"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="xhD-yd-ZCN"/>
+        <segue reference="y1b-Ub-Dqr"/>
     </inferredMetricsTieBreakers>
 </document>

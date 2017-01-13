@@ -11,8 +11,9 @@ import UIKit
 import Alamofire
 import Kanna
 import Speech
+import FirebaseDatabase
 
-var htmlGameString = ""
+
 var indexPathOfChosenQuestion = 0
 
 var arrayOfQuestions = [String]()
@@ -27,6 +28,9 @@ var gameCurrentlyGoing = false
 
 var score = 0
 
+var myRef: FIRDatabaseReference = FIRDatabase.database().reference().child(myKey)   //reference for personal data
+var opponentRef: FIRDatabaseReference = FIRDatabase.database().reference().child(opponentKey)   //reference for opponent data
+
 class gameVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, SFSpeechRecognizerDelegate {
     
     open override var supportedInterfaceOrientations: UIInterfaceOrientationMask{
@@ -36,11 +40,7 @@ class gameVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     let speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "en-US"))  //1
-//
-//    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//    appDelegate.shouldRotate = true // or false to disable rotation
-    
-    var count = 0
+
     
     @IBOutlet weak var scoreLabel: UILabel!
     
@@ -192,26 +192,50 @@ class gameVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
                 }
             }
             
-            if(!arrayOfQuestionCells[indexPath.row].questionAlreadyChosen){
+            if(!isTurnToChooseQuestion(ref: myRef)){
+                //checking if it is other's users turn, if it is, show an alert view
+                createAlertButton()
+            }
+            
+            else if(!arrayOfQuestionCells[indexPath.row].questionAlreadyChosen){
                 arrayOfQuestionCells[indexPath.row].questionAlreadyChosen = true
                 performSegue(withIdentifier: "toQuestion", sender: Any?.self)
-                //cell.questionAlreadyChosen = true
             }
     
         }
-        //print(cell.questionAlreadyChosen)
+
     }
     
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    //create alerts for when other person has to choose, when person has to choose
+    
+    func createAlertButton() {
+        
+        // create the alert
+        let alert = UIAlertController(title: "Not your turn!", message: "Please wait, the other player is currently choosing", preferredStyle: UIAlertControllerStyle.alert)
+        
+        // add the actions (buttons)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        
+        // show the alert
+        self.present(alert, animated: true, completion: nil)
+    
     }
-    */
 
 }
+
+func isTurnToChooseQuestion(ref: FIRDatabaseReference) -> Bool
+{
+    
+    var status = true
+    //return true if person allowed to ask question
+    ref.child("isChoosingQuestion").observeSingleEvent(of: .value, with: {(snapshot) in
+    
+        status = snapshot.value as! Bool
+
+    })
+    return status
+
+}
+
+

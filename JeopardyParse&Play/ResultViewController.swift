@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class ResultViewController: UIViewController {
 
@@ -19,10 +20,19 @@ class ResultViewController: UIViewController {
     @IBOutlet weak var correctAnswerLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
     
+    var firstAnswerWasWrong: Bool = false
+    var secondAnswerWasWrong: Bool = false
+    
+    var timeLeftToViewAnswer: Timer!
+    var timeLeft: Int = 6
+
+    var opponentRef: FIRDatabaseReference = FIRDatabase.database().reference().child(opponentKey)   //reference for opponent data
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        timeLeftToViewAnswer = Timer.scheduledTimer(timeInterval: 6, target: self, selector: #selector(segueAfterTimer), userInfo: nil, repeats: true)
+
         rightOrWrongLabel.text = "\(rightOrWrongLabelText)"
         rightOrWrongLabel.adjustsFontSizeToFitWidth = true
         correctAnswerLabel.text = "\(correctAnswerLabelText)"
@@ -34,6 +44,13 @@ class ResultViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func segueAfterTimer(){
+        
+        opponentRef.child("isWaitingForOtherToAnswer").setValue(false)
+        performSegue(withIdentifier: "backToTableScreen", sender: Any?.self)
+        
     }
     
 
