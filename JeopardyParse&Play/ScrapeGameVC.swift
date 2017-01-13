@@ -13,6 +13,7 @@ import FirebaseDatabase
 
 var htmlGameString = ""     //variable holding the common url between the two players
 var opponentKey = ""
+var opponentFound = false
 
 class ScrapeGameVC: UIViewController {
     
@@ -59,17 +60,20 @@ class ScrapeGameVC: UIViewController {
                 self.ref.child(observedKey).child("gameURL").setValue(htmlGameString)
     
                 
-                self.ref.child("opponentKey").setValue(observedKey)
-                self.ref.child("gameURL").setValue(htmlGameString)
-                self.ref.child("isChoosingFirst").setValue(true)
+                self.ref.child(myKey).child("opponentKey").setValue(observedKey)
+                self.ref.child(myKey).child("gameURL").setValue(htmlGameString)
+                self.ref.child(myKey).child("isChoosingFirst").setValue(true)
           
                 self.loadingLabel.text! = "Playing against \(player.getUsername)"
+                
             }
             
         })
-        scrapeJArchiveGameTable(gameURL: getURL(ref: ref.child("gameURL")))
         
-        performSegue(withIdentifier: "toGame", sender: Any?.self)
+        if(opponentFound(ref: myRef)){
+            scrapeJArchiveGameTable(gameURL: getURL(ref: ref.child("gameURL")))
+            performSegue(withIdentifier: "toGame", sender: Any?.self)
+        }
         
     }
     
@@ -226,6 +230,21 @@ class ScrapeGameVC: UIViewController {
         return substring
     }
     
-    
+    func opponentFound(ref: FIRDatabaseReference) -> Bool {
+        
+        var yes = false
+        ref.child("gameURL").observeSingleEvent(of: .value, with: {(snapshot) in
+         
+            let state = snapshot.value as! String
+            if(state != ""){
+                
+                yes = true
+                
+            }
+            
+        })
+        return yes
+        
+    }
     
 }

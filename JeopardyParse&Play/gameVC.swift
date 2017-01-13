@@ -221,6 +221,15 @@ class gameVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
         self.present(alert, animated: true, completion: nil)
     
     }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        myRef.removeValue()
+        
+        // Remove Firebase Observers
+        myRef.removeAllObservers()
+    }
 
 }
 

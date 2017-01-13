@@ -29,13 +29,13 @@
                                 <rect key="frame" x="263" y="273" width="140" height="82"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="START"/>
+                                <connections>
+                                    <segue destination="yNc-gm-opA" kind="show" id="1BG-MY-nF6"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
-                    <connections>
-                        <segue destination="yNc-gm-opA" kind="show" identifier="toUsernameScreen" id="J6j-Ww-Ii3"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -111,7 +111,6 @@
                                 </state>
                                 <connections>
                                     <action selector="buttonPressed:" destination="yNc-gm-opA" eventType="touchUpInside" id="N3C-E5-WcG"/>
-                                    <segue destination="aYp-5j-eVH" kind="show" identifier="toLoadingScreen" id="K4r-BJ-YWR"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -119,6 +118,7 @@
                     </view>
                     <connections>
                         <outlet property="usernameField" destination="ol4-qU-gJH" id="27u-3Q-KJi"/>
+                        <segue destination="aYp-5j-eVH" kind="show" identifier="toLoadingScreen" id="CJn-KB-2nA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fnl-wg-JXX" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -143,7 +143,7 @@
                                 <color key="color" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </activityIndicatorView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Loading Game" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h9s-IE-iXQ">
-                                <rect key="frame" x="260" y="205" width="146" height="24"/>
+                                <rect key="frame" x="162" y="205" width="343" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="21"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -160,7 +160,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HAR-0O-r6a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="412" y="-626"/>
+            <point key="canvasLocation" x="411.544227886057" y="-626.39999999999998"/>
         </scene>
         <!--GameVC-->
         <scene sceneID="s52-xt-l3b">
@@ -394,6 +394,6 @@
         <image name="jeopardyimage" width="421" height="120"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="y1b-Ub-Dqr"/>
+        <segue reference="xhD-yd-ZCN"/>
     </inferredMetricsTieBreakers>
 </document>

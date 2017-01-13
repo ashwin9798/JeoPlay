@@ -20,9 +20,9 @@ class Player: NSObject{
     var score: NSInteger
 
     let kname = "username"
-    var kIsWaitingForOtherToAnswer = "isWaitingForSomeoneToAnswer"
+    var kIsWaitingForOtherToAnswer = "isWaitingForOtherToAnswer"
     var kIsChoosingQuestion = "isChoosingQuestion"
-    let kGameURL = "GameURL"
+    let kGameURL = "gameURL"
     let kOpponent = "opponentKey"
     let kScore = "score"
     
@@ -49,12 +49,12 @@ class Player: NSObject{
     }
 
     func getSnapshotValue() -> NSDictionary {
-        return ["username": username, "opponentKey": opponentKey, "gameURL" : gameURL, "isChoosingQuestion": isChoosingQuestion, "isWaitingForOtherToAnswer": isWaitingForOtherToAnswer]
+        return ["username": username, "opponentKey": opponentKey, "gameURL" : gameURL, "isChoosingQuestion": isChoosingQuestion, "isWaitingForOtherToAnswer": isWaitingForOtherToAnswer, "score": score]
     }
     
     func getUsername() -> String {
         
-        return(self.username)
+        return self.username
     }
     
 

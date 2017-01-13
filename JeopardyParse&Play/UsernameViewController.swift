@@ -48,7 +48,7 @@ class UsernameViewController: UIViewController, UITextFieldDelegate {
         
         ref.updateChildValues(childUpdates)
         
-        performSegue(withIdentifier: "toLoadingGame", sender: Any?.self)
+        performSegue(withIdentifier: "toLoadingScreen", sender: Any?.self)
     }
 
     /*
