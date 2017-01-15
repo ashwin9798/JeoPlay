@@ -22,7 +22,7 @@ class questionVCViewController: UIViewController {
     var timer: Timer!
     
     var timeLeftToAnswer: Timer!
-    var timeLeft: Int = 7
+    var timeLeft: Int = 5
     var buzzerPressedAlready: Bool = false
     
     var timeLeftToBuzz: Timer!
