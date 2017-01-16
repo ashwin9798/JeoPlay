@@ -19,6 +19,9 @@ class ScrapeGameVC: UIViewController {
     
     var count = 0
     
+    var checkIfOpponentFound: Timer!
+    var gameURL: String = ""
+    
     @IBOutlet weak var loadingLabel: UILabel!
     @IBOutlet weak var loadingGraphic: UIActivityIndicatorView!
     //variable holding game links before random selection
@@ -40,6 +43,7 @@ class ScrapeGameVC: UIViewController {
         loadingLabel.text = "Looking for opponents"
         
         let whichSeason = arc4random_uniform(33) + 1
+//        checkIfOpponentFound = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(repeatCheckOpponent), userInfo: nil, repeats: true)
         
         //Find opponents
         
@@ -61,19 +65,16 @@ class ScrapeGameVC: UIViewController {
     
                 
                 self.ref.child(myKey).child("opponentKey").setValue(observedKey)
-                self.ref.child(myKey).child("gameURL").setValue(htmlGameString)
+                self.ref.child(myKey).child("gameURL").setValue("\(htmlGameString)")
                 self.ref.child(myKey).child("isChoosingFirst").setValue(true)
           
                 self.loadingLabel.text! = "Playing against \(player.getUsername)"
                 
+                self.scrapeJArchiveGameTable(gameURL: getURL(ref: self.ref.child(myKey).child("gameURL")))
+                self.performSegue(withIdentifier: "toGame", sender: Any?.self)
             }
             
         })
-        
-        if(opponentFound(ref: myRef)){
-            scrapeJArchiveGameTable(gameURL: getURL(ref: ref.child("gameURL")))
-            performSegue(withIdentifier: "toGame", sender: Any?.self)
-        }
         
     }
     
@@ -118,7 +119,8 @@ class ScrapeGameVC: UIViewController {
         
         let pickRandomGameNumber = Int(arc4random_uniform(UInt32(temporaryArrayOfGameLinks.count)))
         
-        htmlGameString = temporaryArrayOfGameLinks[pickRandomGameNumber]
+        htmlGameString = temporaryArrayOfGameLinks[pickRandomGameNumber] 
+        gameURL = htmlGameString
     }
     
     func scrapeJArchiveGameTable(gameURL: String){
@@ -230,21 +232,34 @@ class ScrapeGameVC: UIViewController {
         return substring
     }
     
-    func opponentFound(ref: FIRDatabaseReference) -> Bool {
-        
-        var yes = false
-        ref.child("gameURL").observeSingleEvent(of: .value, with: {(snapshot) in
-         
-            let state = snapshot.value as! String
-            if(state != ""){
-                
-                yes = true
-                
-            }
-            
-        })
-        return yes
-        
-    }
+//    func opponentFound() -> Bool {
+//        
+//        var yes = false
+//        
+//        self.ref.child(myKey).child("gameURL").observeSingleEvent(of: .v, with: <#T##(FIRDataSnapshot) -> Void#>)
+//        
+////        self.ref.child(myKey).child("gameURL").observe(of: .value, with: {(snapshot) in
+////         
+////            let state = snapshot.value as! String
+////            if(state != ""){
+////                
+////                yes = true
+////                
+////            }
+////            
+////        })
+////        return yes
+//        
+//    }
+//    
+//    func repeatCheckOpponent(){
+//        
+//        if(opponentFound()){
+//            checkIfOpponentFound.invalidate()
+//            scrapeJArchiveGameTable(gameURL: getURL(ref: ref.child("gameURL")))
+//            performSegue(withIdentifier: "toGame", sender: Any?.self)
+//        }
+//        
+//    }
     
 }

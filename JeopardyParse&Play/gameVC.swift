@@ -28,8 +28,6 @@ var gameCurrentlyGoing = false
 
 var score = 0
 
-var myRef: FIRDatabaseReference = FIRDatabase.database().reference().child(myKey)   //reference for personal data
-var opponentRef: FIRDatabaseReference = FIRDatabase.database().reference().child(opponentKey)   //reference for opponent data
 
 class gameVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, SFSpeechRecognizerDelegate {
     
@@ -47,6 +45,8 @@ class gameVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
     @IBOutlet weak var collectionViewOfCategories: UICollectionView!
     
     @IBOutlet weak var collectionViewOfQuestionButtons: UICollectionView!
+    
+    let myRef: FIRDatabaseReference = FIRDatabase.database().reference().child(myKey)
     
     override func viewDidLoad() {
         super.viewDidLoad()
