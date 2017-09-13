@@ -18,10 +18,10 @@ Using Kanna and Alamofire, I parsed and scraped J-Archive data to create a Jeopa
 # What it looks like
 
 Game board:
-![alt text](https://raw.githubusercontent.com/ashwin9798/JeoPlay/images/gameBoard.jpg)
+![alt text](https://raw.githubusercontent.com/ashwin9798/JeoPlay/master/images/gameBoard.jpg)
 
 Questions:
-![alt text](https://raw.githubusercontent.com/ashwin9798/JeoPlay/images/question.jpg)
+![alt text](https://raw.githubusercontent.com/ashwin9798/JeoPlay/master/images/question.jpg)
 
 Answer:
-![alt text](https://raw.githubusercontent.com/ashwin9798/JeoPlay/images/answer.jpg)
+![alt text](https://raw.githubusercontent.com/ashwin9798/JeoPlay/master/images/answer.jpg)
